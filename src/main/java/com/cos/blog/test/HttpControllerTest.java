@@ -25,5 +25,6 @@ public class HttpControllerTest {
     public String getTest(@RequestBody Member m){
         System.out.println(m.getUsername()+"sibal");
         return "get요청: "+ m.getId()+ ", "+ m.getUsername()+ ", "+ m.getEmail()+ ", "+ m.getPassword();
+        
     }
 }

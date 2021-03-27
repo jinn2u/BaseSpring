@@ -12,6 +12,10 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  devtools:
+    remote:
+      restart:
+        enabled: true
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

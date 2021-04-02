@@ -30,7 +30,6 @@ public class Board {
     @Lob  //대용량 데이터일 경우에 사용
     private  String Content; //섬머노트 라이브러리 사용(html태그가 섞여서 디자인이 됨.)
 
-    @ColumnDefault("0")
     private int count; //조회수
 
     @CreationTimestamp

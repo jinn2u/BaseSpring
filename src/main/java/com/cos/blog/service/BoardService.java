@@ -31,4 +31,8 @@ public class BoardService {
     public Page<Board> writingList(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
+
+    public Board writeDetails(int id){
+        return boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");});
+    }
 }

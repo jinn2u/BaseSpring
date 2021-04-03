@@ -30,9 +30,17 @@ public class BoardController {
         return "board/saveForm";
     }
 
+    // 글 상세보기
     @GetMapping("/board/{id}")
     public String writeDetails(@PathVariable int id, Model model){
         model.addAttribute("board", boardService.writeDetails(id));
         return "board/detail";
+    }
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable int id, Model model){
+        System.out.println(id);
+        System.out.println("8773");
+        model.addAttribute("board", boardService.writeDetails(id));
+        return "board/updateForm";
     }
 }

@@ -12,6 +12,7 @@
             <input type="password" name="password" class="form-control" placeholder="Enter password" id="password">
         </div>
         <button id="btn-login" class="btn btn-primary">로그인 완료</button>
+        <a href="#"><img src="${pageContext.request.contextPath}/image/kakao.png" /></a>
     </form>
 </div>
 

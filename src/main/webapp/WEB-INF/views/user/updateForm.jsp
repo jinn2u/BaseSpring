@@ -18,7 +18,7 @@
     </form>
     <button id="btn-update" class="btn btn-primary">회원수정 완료</button>
 </div>
-<script src = "/js/user.js"></script>
+<script src = "/static/image/js/user.js"></script>
 <%@ include file="../layout/footer.jsp" %>
 
 

@@ -29,8 +29,9 @@ public class BoardApiController {
         boardService.writeDelete(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
-    @PutMapping("/api/board/{id}")
+    @PostMapping("/api/board/{id}")
     public ResponseDto<Integer> writeUpdate(@PathVariable int id, @RequestBody Board board){
+        System.out.println(board.getTitle()+" "+ board.getContent());
         boardService.writeEdit(id,board);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

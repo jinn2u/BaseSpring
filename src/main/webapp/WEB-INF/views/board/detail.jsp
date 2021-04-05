@@ -22,6 +22,6 @@
     </div>
     <hr/>
 </div>
-<script src="/js/board.js"></script>
+<script src="${pageContext.request.contextPath}/js/board.js"></script>
 <%@ include file="../layout/footer.jsp" %>
 

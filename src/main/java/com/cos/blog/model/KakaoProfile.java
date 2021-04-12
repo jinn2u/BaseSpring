@@ -1,57 +1,42 @@
 package com.cos.blog.model;
 
-class KakaoAccount {
+import lombok.Data;
 
+@Data
 public class KakaoProfile {
+    public Integer id;
+    public String connected_at;
+    public Properties properties;
+    public KakaoAccount kakao_account;
 
-    private Integer id;
-    private String connectedAt;
-    private Properties properties;
-    private KakaoAccount kakaoAccount;
+    @Data
+    public class Properties {
+        public String nickname;
+        public String profile_image;
+        public String thumbnail_image;
+    }
 
-class Profile {
+    @Data
+    public class KakaoAccount {
+        public Boolean profile_needs_agreement;
+        public Profile profile;
+        public Boolean has_email;
+        public Boolean email_needs_agreement;
+        public Boolean is_email_valid;
+        public Boolean is_email_verified;
+        public String email;
 
-    private String nickname;
-    private String thumbnailImageUrl;
-    private String profileImageUrl;
-
-
-
+        @Data
+        public class Profile {
+            public String nickname;
+            public String thumbnail_image_url;
+            public String profile_image_url;
+        }
+    }
 }
------------------------------------com.cos.blog.model.Properties.java-----------------------------------
 
-        package com.cos.blog.model;
 
-        import javax.annotation.Generated;
 
-class Properties {
 
-    private String nickname;
-    private String profileImage;
-    private String thumbnailImage;
 
-    public String getNickname() {
-        return nickname;
-    }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
-    }
-
-    public String getThumbnailImage() {
-        return thumbnailImage;
-    }
-
-    public void setThumbnailImage(String thumbnailImage) {
-        this.thumbnailImage = thumbnailImage;
-    }
-
-}

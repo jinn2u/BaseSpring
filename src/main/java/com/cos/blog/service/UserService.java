@@ -42,7 +42,18 @@ public class UserService {
         User persistance = userRepository.findById(user.getId()).orElseThrow(()->{
             return new IllegalArgumentException(("회원 찾기 실패"));
         });
-        persistance.setPassword(encoder.encode(user.getPassword()));
-        persistance.setEmail(user.getEmail());
+        if(persistance.getOauth()== null || persistance.getOauth().equals("")){
+            persistance.setPassword(encoder.encode(user.getPassword()));
+            persistance.setEmail(user.getEmail());
+        }
+
+    }
+
+    @Transactional
+    public User findUser(String username){
+        User user = userRepository.findByUsername(username).orElseGet(()-> {
+            return new User();
+        });
+        return user;
     }
 }

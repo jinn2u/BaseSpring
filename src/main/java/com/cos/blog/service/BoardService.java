@@ -64,18 +64,7 @@ public class BoardService {
 
     @Transactional
     public void writeReply(ReplySaveRequestDto replySaveRequestDto){
-        User user = userRepository.findById(replySaveRequestDto.getUserId()).orElseThrow(() -> {
-            return new IllegalArgumentException("can't find User.");
-        });
-        Board board = boardRepository.findById(replySaveRequestDto.getBoardId()).orElseThrow(() -> {
-            return new IllegalArgumentException("댓글쓰기 실패: 게시글아이디를 찾을 수 없습니다.");
-        });
-        Reply reply = Reply.builder()
-            .user(user)
-            .board(board)
-            .content(replySaveRequestDto.getContent())
-            .build();
+        replyRepository.replySave(replySaveRequestDto.getUserId(),replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
 
-        replyRepository.save(reply);
     }
 }

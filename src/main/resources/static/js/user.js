@@ -20,9 +20,13 @@ let index = {
             data: JSON.stringify(data),
             contentType: "application/json; charset=utf-8",
             dataType: "json"
-        }).done(function(){
-            alert("회원가입이 완료되었습니다.")
-            location.href = '/'
+        }).done(function(resp){
+            if(resp.status === 500){
+                alert("회원가입이 실패하였습니다.")
+            }else{
+                alert("회원가입이 성공하였습니다.")
+                location.href = '/'
+            }
         }).fail(function (error){
             alert(JSON.stringify(error))
         })// ajax 통신을 통하여 3개의 데이터를 json으로 변경하여 insert 요청

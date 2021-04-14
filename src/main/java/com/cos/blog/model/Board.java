@@ -36,7 +36,7 @@ public class Board {
     @CreationTimestamp
     private Timestamp createDate;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     // 연관관계의 주인이 아니다. FK를 만들지 않는다.
     // 필요하면 reply를 들고오고 아니면 가져오지 않을수도 있다.(OneToMany의 기본 전력은 LAZY이다.)
     @JsonIgnoreProperties({"board"})

@@ -9,6 +9,9 @@ let index = {
         $("#btn-update").on('click', ()=> {  // this를 바인딩하기 위해서 화살표함수를 사용했다.
             this.update()
         })
+        $("#btn-reply-save").on('click', ()=>{
+            this.replySave()
+        })
     },
     save: function(){
         let data = {
@@ -56,6 +59,25 @@ let index = {
         }).done(function(){
             alert("글수정이 완료되었습니다.")
             location.href = '/'
+        }).fail(function (error){
+            alert(JSON.stringify(error))
+        })
+    },
+    replySave: function(){
+        let data = {
+            content: $("#reply-content").val(),
+            userId: $("#userId").val(),
+            boardId: $("#boardId").val()
+        }
+        $.ajax({
+            type: "POST",
+            url: `/api/board/${data.boardId}/reply`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function(){
+            alert("댓글작성이 완료되었습니다.")
+            location.href = `/board/${data.boardId}`
         }).fail(function (error){
             alert(JSON.stringify(error))
         })

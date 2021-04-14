@@ -95,13 +95,13 @@ public class UserController {
             e.printStackTrace();
         }
 
-        System.out.println("카카오 엑세스 토큰 : "+oauthToken.getAccess_token());
+        System.out.println("카카오 엑세스 토큰 : " + oauthToken.getAccess_token());
 
         RestTemplate rt2 = new RestTemplate();
 
         // HttpHeader 오브젝트 생성
         HttpHeaders headers2 = new HttpHeaders();
-        headers2.add("Authorization", "Bearer "+oauthToken.getAccess_token());
+        headers2.add("Authorization", "Bearer " + oauthToken.getAccess_token());
         headers2.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 
         // HttpHeader와 HttpBody를 하나의 오브젝트에 담기
@@ -128,16 +128,16 @@ public class UserController {
         }
 
         // User 오브젝트 : username, password, email
-        System.out.println("카카오 아이디(번호) : "+kakaoProfile.getId());
-        System.out.println("카카오 이메일 : "+kakaoProfile.getKakao_account().getEmail());
+        System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());
+        System.out.println("카카오 이메일 : " + kakaoProfile.getKakao_account().getEmail());
 
-        System.out.println("블로그서버 유저네임 : "+kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
-        System.out.println("블로그서버 이메일 : "+kakaoProfile.getKakao_account().getEmail());
+        System.out.println("블로그서버 유저네임 : " + kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId());
+        System.out.println("블로그서버 이메일 : " + kakaoProfile.getKakao_account().getEmail());
         // UUID란 -> 중복되지 않는 어떤 특정 값을 만들어내는 알고리즘
-        System.out.println("블로그서버 패스워드 : "+cosKey);
+        System.out.println("블로그서버 패스워드 : " + cosKey);
 
         User kakaoUser = User.builder()
-                .username(kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId())
+                .username(kakaoProfile.getKakao_account().getEmail() + "_" + kakaoProfile.getId())
                 .password(cosKey)
                 .email(kakaoProfile.getKakao_account().getEmail())
                 .oauth("kakao")
@@ -146,7 +146,7 @@ public class UserController {
         // 가입자 혹은 비가입자 체크 해서 처리
         User originUser = userService.findUser(kakaoUser.getUsername());
 
-        if(originUser.getUsername() == null) {
+        if (originUser.getUsername() == null) {
             System.out.println("기존 회원이 아니기에 자동 회원가입을 진행합니다");
             userService.SignUp(kakaoUser);
         }
@@ -158,6 +158,7 @@ public class UserController {
 
         return "redirect:/";
     }
+
     @GetMapping("/user/updateForm")
     public String updateForm() {
         return "user/updateForm";

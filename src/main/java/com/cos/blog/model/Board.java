@@ -1,6 +1,7 @@
 package com.cos.blog.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +39,8 @@ public class Board {
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     // 연관관계의 주인이 아니다. FK를 만들지 않는다.
     // 필요하면 reply를 들고오고 아니면 가져오지 않을수도 있다.(OneToMany의 기본 전력은 LAZY이다.)
-    private List<Reply> reply;
+를
+    private List<Reply> replys;
 
     @ManyToOne(fetch = FetchType.EAGER) // board에는 하나의 user만 존재한다.(manyToOne의 기본전)
     @JoinColumn(name = "userId")

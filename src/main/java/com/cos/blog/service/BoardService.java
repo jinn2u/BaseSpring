@@ -1,6 +1,7 @@
 package com.cos.blog.service;
 
 import com.cos.blog.Repository.BoardRepository;
+import com.cos.blog.Repository.ReplyRepository;
 import com.cos.blog.Repository.UserRepository;
 import com.cos.blog.model.Board;
 import com.cos.blog.model.RoleType;
@@ -20,7 +21,6 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-
     @Transactional
     public void writing(Board board, User user) {
         board.setCount(0);
@@ -29,23 +29,27 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Board> writingList(Pageable pageable){
+    public Page<Board> writingList(Pageable pageable) {
         return boardRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
-    public Board writeDetails(int id){
-        return boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");});
+    public Board writeDetails(int id) {
+        return boardRepository.findById(id).orElseThrow(() -> {
+            return new IllegalArgumentException("글 상세보기 실패: 아이디를 찾을 수 없습니다.");
+        });
     }
 
     @Transactional
-    public void writeDelete(int id){
+    public void writeDelete(int id) {
         boardRepository.deleteById(id);
     }
 
     @Transactional
-    public void writeEdit(int id, Board requestBoard){
-        Board board = boardRepository.findById(id).orElseThrow(()->{return new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다.");});
+    public void writeEdit(int id, Board requestBoard) {
+        Board board = boardRepository.findById(id).orElseThrow(() -> {
+            return new IllegalArgumentException("글 찾기 실패: 아이디를 찾을 수 없습니다.");
+        });
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
     }
